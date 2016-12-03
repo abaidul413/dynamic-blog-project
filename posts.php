@@ -1,6 +1,4 @@
 <?php include'inc/header.php'; ?>
-<?php include'inc/slider.php'; ?>
-
    <?php
      $db = new Database();
      $fm = new Format();

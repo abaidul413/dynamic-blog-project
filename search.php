@@ -18,10 +18,10 @@
            
            <?php
               $query = "SELECT * FROM tbl_post WHERE title LIKE '%$search%' OR body LIKE '%$search%'";
-              $catpost = $db->select($query);
-              if( $catpost) 
+              $search = $db->select($query);
+              if( $search) 
               {
-              	while ($result = $catpost->fetch_assoc()) { 	 	
+              	while ($result = $search->fetch_assoc()) { 	 	
             ?>
 
            <div class="samepost clear">
