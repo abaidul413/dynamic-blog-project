@@ -1,19 +1,11 @@
 <?php include'inc/header.php'; ?>
 <?php include'inc/slider.php'; ?>
 
-<?php include 'config/config.php'; ?>
-<?php include 'lib/Database.php'; ?>
-<?php include 'helpers/Format.php'; ?>
-
-  <?php
-
+   <?php
      $db = new Database();
      $fm = new Format();
+   ?>
 
-  ?>
-
-
-	
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
            
@@ -31,7 +23,6 @@
            ?>
            <!-- Pagination process End-->
 
-
            <?php 
                $query = "select * from tbl_post limit $start_form,$per_page";
                $post = $db->select($query);
@@ -42,7 +33,7 @@
            ?>
 
 			<div class="samepost clear">
-				<h2><a href="post.php?id=<?php echo $resutl['id']; ?>"><?php echo $result['title']; ?></a>
+				<h2><a href="post.php?id=<?php echo $result['id']; ?>"><?php echo $result['title']; ?></a>
 				</h2>
 
 				<h4>
@@ -54,7 +45,7 @@
 				<?php echo $fm->shortText($result['body']); ?>
 
 				<div class="readmore clear">
-					<a href="post.php?id=<?php echo $resutl['id']; ?>">Read More</a>
+					<a href="post.php?id=<?php echo $result['id']; ?>">Read More</a>
 				</div>
 			</div>
     <?php } ?>	<!-- End of whilop -->	
@@ -72,12 +63,12 @@
 	       for ($i=1; $i <=$total_pages ; $i++) { 
 	        	echo "<a href = 'index.php?page=".$i."'>".$i."</a>";
 	        } 
-	       echo "<a href='index.php?page= $total_pages'>".'Last page'."</a></span>"
+	       echo "<a href='index.php?page= $total_pages'>".'Last page'."</a></span>";
        ?>
 
     <!-- End of pagination -->
 
-     <?php  }else{header("location:404.php");}  ?>
+     <?php  }else{header("Location:404.php");}  ?>
 
 		</div>
 		
