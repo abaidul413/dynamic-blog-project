@@ -1,7 +1,7 @@
 <?php include'inc/header.php'; ?>
 
     <?php 
-      if (!isset($_GET['id']) || $_GET['id'] == 'NULL') {
+      if (!isset($_GET['id']) || $_GET['id'] == NULL) {
       	header("Location:404.php");
       }else{
       	$id = $_GET['id'];
@@ -27,16 +27,28 @@
 				<img src="admin/upload/<?php echo $result['image']; ?>" alt="MyImage"/>
 				<?php echo $result['body']; ?>
 				
-			<?php } } ?>	
+			
 		 <div class="relatedpost clear">
 			<h2>Related articles</h2>
-			<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-			<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-			<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-			<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-			<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-			<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
+
+            <?php
+               
+                $cat_id = $result['cat_id'];
+                $cat_query = "select * from tbl_post where cat_id = '$cat_id' limit 6";
+                $cat_post = $db->select($cat_query);
+                if($cat_post)
+                {
+                 while ($relResult = $cat_post->fetch_assoc()) {   
+             ?>
+                
+			   <a href="post.php?id=<?php echo $relResult['id']; ?>">
+			   <img src="admin/upload/<?php echo $relResult['image']; ?>" alt="post image"/></a>
+
+		 <?php } }else{echo"No Related Post";} ?>
 		</div>
+        
+     <?php } }else{ header("Location:404.php");} ?>	
+
 	</div>
 </div>
 

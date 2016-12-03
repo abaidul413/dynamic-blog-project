@@ -50,8 +50,8 @@
 			</div>
     <?php } ?>	<!-- End of whilop -->	
 
+    
     <!-- Pagination -->
-
       <?php 
        
 	       $query = "select * from tbl_post";
@@ -65,12 +65,11 @@
 	        } 
 	       echo "<a href='index.php?page= $total_pages'>".'Last page'."</a></span>";
        ?>
-
     <!-- End of pagination -->
 
      <?php  }else{header("Location:404.php");}  ?>
 
-		</div>
+ </div>
 		
 <?php include'inc/sidebar.php'; ?>	
 <?php include'inc/footer.php'; ?>
