@@ -27,7 +27,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['name']; ?></td>
-							<td><a href="catlistEdit.php?id=<?php echo $result['id'] ?>">Edit</a> || <a href="catlistDelete.php?id=<?php echo $result['id'] ?>" onclic = "return confirm(' Are Your sure you want to Delete?? ')";>Delete</a></td>
+							<td><a href="catlistEdit.php?id=<?php echo $result['id'] ?>">Edit</a> || <a href= "catlistDelete.php?id=<?php echo $result['id'] ?>">Delete</a></td>
 						</tr>
                    <?php } } ?>
 
