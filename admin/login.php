@@ -39,7 +39,7 @@
               	 if($row > 0){
                     Session::set("login",true);
                     Session::set("username", $value['username']);
-                    Session::set("password", $value['password']);
+                    //Session::set("password", $value['password']);
                     Session::set("userId", $value['id']);
                     header("Location:index.php");
               	 }else{
