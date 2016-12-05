@@ -1,4 +1,4 @@
-﻿<?php include"inc/header.php" ?>
+<?php include"inc/header.php" ?>
 <?php include"inc/sidebar.php" ?>
 
 <div class="grid_10">
@@ -26,7 +26,7 @@
             } 
          ?>
 
-         <form action = "" method = "POST">
+         <form action = "" method = "post">
             <table class="form">					
                 <tr>
                     <td>
