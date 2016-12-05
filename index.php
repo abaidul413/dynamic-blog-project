@@ -40,7 +40,7 @@
 				<?php echo $fm->formatDate($result['date']); ?>, By <a href="#"><?php echo $result['author']; ?></a>
 				</h4>
 
-				<a href="#"><img src="admin/upload/<?php echo $result['image']; ?>" alt="post image"/></a>
+				<a href="#"><img src="admin/<?php echo $result['image']; ?>" alt="post image"/></a>
 
 				<?php echo $fm->shortText($result['body']); ?>
 

@@ -1,4 +1,4 @@
-﻿<?php include"inc/header.php" ?>
+<?php include"inc/header.php" ?>
 <?php include"inc/sidebar.php" ?>
 
 <div class="grid_10">
@@ -7,7 +7,7 @@
         <h2>Add New Post</h2>
 
 <?php 
-   if($_SERVER['REQUEST_METHOD'] =='POST') {
+   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
      $title  = mysqli_real_escape_string($db->link,  $_POST['title']);
      $cat_id = mysqli_real_escape_string($db->link,  $_POST['cat_id']);
@@ -25,7 +25,7 @@
      $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
      $uploaded_image = "upload/".$unique_image;
 
-     if($title = "" || $cat_id = "" || $body = "" || $tags = "" || $author = "" || $file_name = ""){
+     if($title == "" || $cat_id == "" || $body == "" || $tags == "" || $author == "" || $file_name == ""){
         echo "<span style ='color:red; font-size:18px;'>Field must not be empty</span>";
 
      }elseif ($file_size >1048567) {
@@ -49,6 +49,7 @@
          echo "<span class='error'>Data Not Inserted !</span>";
         }
       }
+
    }
 
 ?>

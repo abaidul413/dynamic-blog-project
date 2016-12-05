@@ -35,7 +35,7 @@
 						   <a href="post.php?id=<?php echo $result['id']; ?>"><?php echo $result['title']; ?></a>
 						</h3>
 
-						<a href="#"><img src="admin/upload/<?php echo $result['image']; ?>" alt="post image"/></a>
+						<a href="#"><img src="admin/<?php echo $result['image']; ?>" alt="post image"/></a>
 
 						<?php echo $fm->shortText($result['body'],100); ?>
 					</div>
