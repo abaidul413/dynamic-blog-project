@@ -54,7 +54,7 @@
 
 ?>
 
-        <div class="block">
+      <div class="block">
          <form action="" method="post" enctype="multipart/form-data">
             <table class="form">
                 <tr>

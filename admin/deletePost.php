@@ -26,7 +26,6 @@
               $is_delete = $db->delete($query);
               if ($is_delete) {
                  echo "<span class='sucess'>Data Deleted Successfully!</span></span>";
-                 //header("Location:postlist.php");
               }else{
                 echo "<span class='error'>Failed To Delete Post !</span>";
               }
