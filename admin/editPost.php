@@ -34,10 +34,12 @@
      $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
      $uploaded_image = "upload/".$unique_image;
 
-     if($title == "" || $cat_id == "" || $body == "" || $tags == "" || $author == "" || $file_name == ""){
+     if($title == "" || $cat_id == "" || $body == "" || $tags == "" || $author == ""){
         echo "<span style ='color:red; font-size:18px;'>Field must not be empty</span>";
-
-     }elseif ($file_size >1048567) {
+    }else{
+ 
+ if(!empty($file_name)){
+    if($file_size >1048567) {
          echo "<span class='error'>Image Size should be less then 1MB!
          </span>";
 
@@ -46,21 +48,44 @@
          .implode(', ', $permited)."</span>";
 
         } else{
-
-        move_uploaded_file($file_temp, $uploaded_image);
-
-        $query = "INSERT INTO tbl_post(cat_id, title, body, image, author, tags) VALUES('$cat_id','$title','$body','$uploaded_image','$author','$tags')";
-         $inserted_rows = $db->insert($query);
-        if ($inserted_rows) {
-         echo "<span class='success'>Data Inserted Successfully.
+	        move_uploaded_file($file_temp, $uploaded_image);
+	        $query = "UPDATE tbl_post
+	                      SET 
+	                  cat_id = '$cat_id',
+	                  title = '$title',
+	                  body = '$body',
+	                  image = '$uploaded_image',
+	                  author = '$author',                  
+	                  tags = '$tags'
+	                  WHERE id = '$id'";
+         $updated_rows = $db->update($query);
+        if ($updated_rows) {
+         echo "<span class='success'>Data Updated Successfully.
          </span>";
         }else {
-         echo "<span class='error'>Data Not Inserted !</span>";
+         echo "<span class='error'>Data Not Updated !</span>";
         }
       }
 
+   }else{
+        $query = "UPDATE tbl_post
+                      SET 
+                  cat_id   = '$cat_id',
+                  title    = '$title',
+                  body     = '$body',
+                  author   = '$author',                  
+                  tags     = '$tags'
+                  WHERE id = '$id'";
+     $updated_rows = $db->update($query);
+    if ($updated_rows) {
+     echo "<span class='success'>Data Updated Successfully.
+     </span>";
+    }else {
+     echo "<span class='error'>Data Not Updated !</span>";
+    }
    }
-
+  }
+}
 ?>
 
         <div class="block">
@@ -96,13 +121,14 @@
                        if($catlist){
                         while ($result = $catlist->fetch_assoc()) {  
                     ?> 
-                    <option
-                    <?php
-                      if ($postResult['cat_id'] == $result['id']) {
-                      	echo "selected = 'selected'";
-                      }
-                    ?>
-                      value="<?php echo $result['id']; ?>"><?php echo $result['name']; ?></option> 
+              <option
+                <?php
+                  if ($postResult['cat_id'] == $result['id']) {
+                  	echo "selected = 'selected'";
+                  }
+                ?>
+                value="<?php echo $result['id']; ?>"><?php echo $result['name']; ?>	
+             </option> 
 
                         <?php } } ?>
                     </select>
