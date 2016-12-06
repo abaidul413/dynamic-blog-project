@@ -22,7 +22,7 @@
 			<tbody>
 
 			<?php
-			  $query = "SELECT tbl_post.*, tbl_category.name from tbl_post, tbl_category WHERE tbl_post.id = tbl_category.id"; 
+			  $query = "SELECT tbl_post.*, tbl_category.name FROM tbl_post INNER JOIN tbl_category ON tbl_post.cat_id = tbl_category.id ORDER BY tbl_post.title DESC "; 
 			  $postList = $db->select($query);
 			  if ($postList) {
 			  	$i = 0;
@@ -30,18 +30,23 @@
 			  		$i++;
 			 ?>
 
-				<tr class="odd gradeX">
-					<td><?php echo $i; ?></td>
-					<td><?php echo $result['title']; ?></td>
-					<td><?php echo $fm->shortText($result['body'],50); ?></td>
-					<td><?php echo $result['name']; ?></td>
-					<td><img src = "<?php echo $result['image']; ?>" width = "50px" height = "70px"/></td>
-					<td><?php echo $result['author']; ?></td>
-					<td><?php echo $result['tags']; ?></td>
-					<td><?php echo $fm->formatDate($result['date']); ?></td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-			<?php } } ?>	
+			<tr class="odd gradeX">
+				<td><?php echo $i; ?></td>
+				<td><?php echo $result['title']; ?></td>
+				<td><?php echo $fm->shortText($result['body'],50); ?></td>
+				<td><?php echo $result['name']; ?></td>
+				<td><img src = "<?php echo $result['image']; ?>" width = "50px" height = "70px"/></td>
+				<td><?php echo $result['author']; ?></td>
+				<td><?php echo $result['tags']; ?></td>
+				<td>
+				<?php echo $fm->formatDate($result['date']); ?></td>
+				<td>
+				<a href="editPost.php?editPostId=<?php echo $result['id'];?>">Edit</a> 
+					         || 
+				<a href="deletePost.php?deletetPostId=<?php echo $result['id'];?>">Delete</a>
+				</td>
+			</tr>
+		<?php } } ?>	
 			</tbody>
 		</table>
 
