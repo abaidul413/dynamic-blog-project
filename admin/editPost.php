@@ -13,7 +13,7 @@
 <div class="grid_10">
 
     <div class="box round first grid">
-        <h2>Add New Post</h2>
+        <h2>Update Post</h2>
 
 <?php 
    if($_SERVER['REQUEST_METHOD'] == 'POST') {

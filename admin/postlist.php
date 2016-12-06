@@ -43,7 +43,7 @@
 				<td>
 				<a href="editPost.php?editPostId=<?php echo $result['id'];?>">Edit</a> 
 					         || 
-				<a href="deletePost.php?deletetPostId=<?php echo $result['id'];?>">Delete</a>
+				<a onclick="return confirm('Are You Sure For Delete!!!');" href="deletePost.php?deletetPostId=<?php echo $result['id'];?>">Delete</a>
 				</td>
 			</tr>
 		<?php } } ?>	
