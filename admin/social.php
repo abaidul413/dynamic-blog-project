@@ -4,15 +4,53 @@
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Update Social Media</h2>
-        <div class="block">               
-         <form>
+        <div class="block">
+        <?php 
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                
+                $fb = $fm->validation($_POST['fb']);
+                $tw = $fm->validation($_POST['tw']);
+                $ln = $fm->validation($_POST['ln']);
+                $gp = $fm->validation($_POST['gp']);
+
+                $fb  = mysqli_real_escape_string($db->link, $fb);
+                $tw  = mysqli_real_escape_string($db->link, $tw);
+                $ln  = mysqli_real_escape_string($db->link, $ln);
+                $gp  = mysqli_real_escape_string($db->link, $gp);
+
+                if ($fb == '' || $tw == '' || $ln == '' || $gp == '') {
+                     echo "<span class = 'error'>Feild must not be empty</span>";
+                  }else{
+                    $query = "UPDATE tbl_social_media SET fb = '$fb', tw = '$tw', ln = '$ln', gp = '$gp' WHERE id = '1'";
+                    $update = $db->update($query);
+                    if ($update) {
+                        echo "<span class = 'success'>Data Updated Successfully!!</span>";
+                    }else{
+                        echo "<span class = 'error'>Failed to update Data</span>";
+                    }
+                  }  
+            }
+
+         ?>
+
+
+
+        <?php 
+           $query = "SELECT * FROM tbl_social_media WHERE id = '1'";
+           $social_media = $db->select($query);
+           if ($social_media) {
+               while ($result = $social_media->fetch_assoc()) {
+                
+         ?>
+        
+         <form action="" method="post" enctype="multipart/form-data">
             <table class="form">					
                 <tr>
                     <td>
                         <label>Facebook</label>
                     </td>
                     <td>
-                        <input type="text" name="facebook" placeholder="Facebook link.." class="medium" />
+                        <input type="text" name="fb" value="<?php echo $result['fb'] ?>" class="medium" />
                     </td>
                 </tr>
 				 <tr>
@@ -20,7 +58,7 @@
                         <label>Twitter</label>
                     </td>
                     <td>
-                        <input type="text" name="twitter" placeholder="Twitter link.." class="medium" />
+                        <input type="text" name="tw" value="<?php echo $result['tw'] ?>" class="medium" />
                     </td>
                 </tr>
 				
@@ -29,7 +67,7 @@
                         <label>LinkedIn</label>
                     </td>
                     <td>
-                        <input type="text" name="linkedin" placeholder="LinkedIn link.." class="medium" />
+                        <input type="text" name="ln" value="<?php echo $result['ln'] ?>" class="medium" />
                     </td>
                 </tr>
 				
@@ -38,7 +76,7 @@
                         <label>Google Plus</label>
                     </td>
                     <td>
-                        <input type="text" name="googleplus" placeholder="Google Plus link.." class="medium" />
+                        <input type="text" name="gp" value="<?php echo $result['gp'] ?>" class="medium" />
                     </td>
                 </tr>
 				
@@ -50,6 +88,9 @@
                 </tr>
             </table>
             </form>
+
+          <?php } } ?> 
+
         </div>
     </div>
 </div>

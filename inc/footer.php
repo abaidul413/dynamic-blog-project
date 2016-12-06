@@ -12,12 +12,20 @@
 	  </div>
 	  <p>&copy;Vivacom Solutions &amp; All rights Reseverd.</p>
 	</div>
+	  <?php
+          $query = "SELECT *FROM tbl_social_media WHERE id = '1'";
+          $social_media = $db->select($query);
+          if ($social_media) {
+          	 while ($result = $social_media->fetch_assoc()) {
+              	 
+         ?>
 	<div class="fixedicon clear">
-		<a href="http://www.facebook.com"><img src="images/fb.png" alt="Facebook"/></a>
-		<a href="http://www.twitter.com"><img src="images/tw.png" alt="Twitter"/></a>
-		<a href="http://www.linkedin.com"><img src="images/in.png" alt="LinkedIn"/></a>
-		<a href="http://www.google.com"><img src="images/gl.png" alt="GooglePlus"/></a>
+		<a href="<?php echo $result['fb']; ?>" target="_blank"><img src="images/fb.png" alt="Facebook"/></a>
+		<a href="<?php echo $result['tw']; ?>" target="_blank"><img src="images/tw.png" alt="Twitter"/></a>
+		<a href="<?php echo $result['ln']; ?>" target="_blank"><img src="images/in.png" alt="LinkedIn"/></a>
+		<a href="<?php echo $result['gp']; ?>" target="_blank"><img src="images/gl.png" alt="GooglePlus"/></a>
 	</div>
+  <?php  } } ?>
 <script type="text/javascript" src="js/scrolltop.js"></script>
 </body>
 </html>
