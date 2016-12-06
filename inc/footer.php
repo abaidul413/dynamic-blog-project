@@ -10,7 +10,16 @@
 			<li><a href="#">Privacy</a></li>
 		</ul>
 	  </div>
-	  <p>&copy;Vivacom Solutions &amp; All rights Reseverd.</p>
+        <?php
+            $query = "select * from tbl_copyright where id = '1' ";
+            $copyright = $db->select($query);
+            if ($copyright) {
+             	while ($result = $copyright->fetch_assoc()) {
+         ?>
+	    <p>&copy;<?php echo $result['copyright']; ?></p>
+
+	 <?php } } ?>
+
 	</div>
 	  <?php
           $query = "SELECT *FROM tbl_social_media WHERE id = '1'";
