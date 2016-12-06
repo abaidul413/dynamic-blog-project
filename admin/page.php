@@ -10,6 +10,10 @@
 
 ?>
 
+<style>
+    .delbutton{margin-left: 10px; }
+    .delbutton a{border: 1px solid #ddd;color: #444;cursor: pointer;font-size: 20px;padding: 2px 10px; font-weight: normal; background: #F0F0F0;}
+</style>
 
 <div class="grid_10">
 
@@ -73,7 +77,8 @@
 				<tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save" />
+                        <input type="submit" name="submit" Value="Update" />
+                        <span class = "delbutton"><a onclick="return confirm('Are You Sure to Delete!!!!');" href = "delPage.php? pageId=<?php echo $result['id'] ?>">Delete</a></span>
                     </td>
                 </tr>
             </table>
