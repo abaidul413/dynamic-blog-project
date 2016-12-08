@@ -2,10 +2,10 @@
 <?php include"inc/sidebar.php" ?>
 
 <?php 
-   if (!isset($_GET['msgId']) || $_GET['rplyId'] == 'NULL') {
+   if (!isset($_GET['rplyId']) || $_GET['rplyId'] == 'NULL') {
        header("Location:inbox.php");
    }else{
-      $msgId = $_GET['msgId'];
+      $rplyId = $_GET['rplyId'];
    }
 ?>
 
@@ -13,19 +13,29 @@
 <div class="grid_10">
 
     <div class="box round first grid">
-        <h2>View Messag</h2>
+        <h2>Reply Messag</h2>
         
     <?php 
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-         echo "<script>window.location = 'inbox.php';</script>";
+         $to      = $_POST['toEmail'];
+         $from    = $_POST['fromEmail'];
+         $subject = $_POST['subject'];
+         $message = $_POST['message'];
+
+         $sendMail = mail($to, $subject, $message, $from);
+         if ($sendMail) {
+             echo "<span style = 'color:green; font-weight:bold;'>Message sent Successfully</span>";
+         }else{
+            echo "<span style = 'color:red; font-weight:bold;'>Failed to Sent Message</span>";
+         }
       }
 
     ?>
 
         <div class="block">
         <?php
-            $query = "select * from tbl_contact where id = '$msgId'";
+            $query = "select * from tbl_contact where id = '$rplyId'";
             $select = $db->select($query);
             if ($select) {
               while ($result = $select->fetch_assoc()) {
@@ -34,30 +44,31 @@
 
          <form action="" method="post" >
             <table class="form">
-                <tr>
-                    <td>
-                        <label>Name</label>
-                    </td>
-                    <td>
-                        <input type="text" readonly value="<?php echo $result['firstname'].' '.$result['lastname'];?>" class="medium" />
-                    </td>
-                </tr>
                 
                 <tr>
                     <td>
-                        <label>Email</label>
+                        <label>To</label>
                     </td>
                     <td>
-                        <input type="text" readonly value="<?php echo $result['email']; ?>" class="medium" />
+                        <input type="text" readonly name = "toEmail" value="<?php echo $result['email']; ?>" class="medium" />
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                        <label>Date</label>
+                        <label>From</label>
                     </td>
                     <td>
-                        <input type="text" readonly value="<?php echo $fm->formatDate($result['date']); ?>" class="medium" />
+                        <input type="text" name ="fromEmail" class="medium" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Subject</label>
+                    </td>
+                    <td>
+                        <input type="text" name ="subject" class="medium" />
                     </td>
                 </tr>
 
@@ -66,13 +77,13 @@
                         <label>Message</label>
                     </td>
                     <td>
-                        <textarea class="tinymce" readonly><?php echo $result['msg']; ?></textarea>
+                        <textarea class="tinymce" name = "message"> </textarea>
                     </td>
                 </tr> 
                 <tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" value ="Ok" />
+                        <input type="submit" name="submit" value ="Reply" />
                     </td>
                 </tr>
             </table>
