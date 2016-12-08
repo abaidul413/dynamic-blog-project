@@ -19,10 +19,20 @@
         	if ($get_title) {
         		while ($result = $get_title->fetch_assoc()) {			
         ?>
-        			<title><?php echo $result['name'] ?>-<?php echo TITLE ?></title>
+        			<title><?php echo $result['page_name'] ?>-<?php echo TITLE ?></title>
 
-         <?php }} } else{ ?>
-              <title><?php echo $result['name'] ?></title> 
+         <?php } } }elseif (isset($_GET['id'])){
+        	$postid = $_GET['id'];
+
+        	$query = "select *from tbl_post where id = '$postid'";
+        	$get_post_title = $db->select($query);
+        	if ($get_post_title) {
+        		while ($result = $get_post_title->fetch_assoc()) {			
+        ?>
+        			<title><?php echo $result['title'] ?>-<?php echo TITLE ?></title>
+
+         <?php } } }else{ ?>
+              <title><?php echo $fm->title();?>-<?php echo TITLE ?></title>
          <?php } ?>
 
 	<meta name="language" content="English">

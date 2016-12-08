@@ -23,5 +23,18 @@
            $data = htmlspecialchars($data);
            return $data;
 		}
+
+		public function title()
+		{
+			$path = $_SERVER['SCRIPT_FILENAME'];
+			//echo $path;
+			$title = basename($path,'.php');
+			if ($title == 'index') {
+				$title = 'home';
+			}elseif($title == 'contact'){
+				$title = 'contact';
+			}
+		  return $title = ucfirst($title);
+		}
 	}
 ?>
