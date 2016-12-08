@@ -34,7 +34,8 @@
 					<td><?php echo $fm->formatDate($result['date']); ?></td>
 					<td>
 					  <a href="viewMessage.php?msgId=<?php echo $result['id']; ?>">View</a> || 
-					  <a href="replyMessage.php?rplyId=<?php echo $result['id']; ?>">Reply</a>||
+					  <a href="replyMessage.php?rplyId=<?php echo $result['id']; ?>">Reply
+					  </a>||
 					   <a href="?seenId=<?php echo $result['id']; ?>">Seen</a>
 					</td>
 				</tr>
