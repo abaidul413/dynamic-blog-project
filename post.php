@@ -24,7 +24,7 @@
 
 				<h2><?php echo $result['title']; ?></h2>
 				<h4><?php echo $fm->formatDate($result['date']); ?>, By <?php echo $result['author'] ?></h4>
-				<img src="admin/upload/<?php echo $result['image']; ?>" alt="MyImage"/>
+				<img src="admin/<?php echo $result['image']; ?>" alt="MyImage"/>
 				<?php echo $result['body']; ?>
 				
 			
@@ -42,7 +42,7 @@
              ?>
                 
 			   <a href="post.php?id=<?php echo $relResult['id']; ?>">
-			   <img src="admin/upload/<?php echo $relResult['image']; ?>" alt="post image"/></a>
+			   <img src="admin/<?php echo $relResult['image']; ?>" alt="post image"/></a>
 
 		 <?php } }else{echo"No Related Post";} ?>
 		</div>

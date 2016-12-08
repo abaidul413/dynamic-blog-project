@@ -10,7 +10,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dynamic Blog Website</title>
+     <?php
+       if (isset($_GET['pageId'])){
+        	$pageId = $_GET['pageId'];
+
+        	$query = "select *from tbl_page where id = '$pageId'";
+        	$get_title = $db->select($query);
+        	if ($get_title) {
+        		while ($result = $get_title->fetch_assoc()) {			
+        ?>
+        			<title><?php echo $result['name'] ?>-<?php echo TITLE ?></title>
+
+         <?php }} } else{ ?>
+              <title><?php echo $result['name'] ?></title> 
+         <?php } ?>
+
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
 	<meta name="keywords" content="blog,cms blog">
@@ -87,7 +101,15 @@ $(window).load(function() {
 <div class="navsection templete">
 	<ul>
 		<li><a id="active" href="index.php">Home</a></li>
-		<li><a href="about.php">About</a></li>	
+		<?php
+		  $query = "select *from tbl_page";
+		  $pages = $db->select($query);
+		  if ($pages) {
+		  	 while ($result = $pages->fetch_assoc()) {
+		  	 	
+		 ?>
+		<li><a href="page.php?pageId=<?php echo $result['id']; ?>"><?php echo $result['page_name']; ?></a></li>
+	<?php } } ?>	
 		<li><a href="contact.php">Contact</a></li>
 	</ul>
 </div>
