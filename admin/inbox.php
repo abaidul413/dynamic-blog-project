@@ -90,7 +90,7 @@
 					<td><?php echo $result['email']; ?></td>
 					<td><?php echo $fm->formatDate($result['msg']); ?></td>
 					<td><?php echo $fm->formatDate($result['date']); ?></td>
-					<td> <a onclick="return confirm('Are Sure To Move The Message?');" href="?delId = <?php echo $result['id'];?>">Delete</a> </td>
+					<td> <a onclick="return confirm('Are Sure For Delete!!!?');" href="deleteSeenMsg.php?delId = <?php echo $result['id'];?>">Delete</a> </td>
 				</tr>
        <?php } } ?>
 			</tbody>
