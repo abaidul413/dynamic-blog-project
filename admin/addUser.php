@@ -19,17 +19,24 @@
             {
                 $username = $fm->validation($_POST['username']);
                 $password = $fm->validation(md5($_POST['password']));
+                $email    = $fm->validation($_POST['email']);
                 $role     = $fm->validation($_POST['role']);
 
                 $username = mysqli_real_escape_string($db->link,$username);
                 $password = mysqli_real_escape_string($db->link,$password);
+                $email    = mysqli_real_escape_string($db->link,$email);
                 $role     = mysqli_real_escape_string($db->link,$role);
 
-                if (empty($username) || empty($password) || empty($role)) {
+                if (empty($username) || empty($password) || empty($role) || empty($email)) {
                     echo "<span style ='color:red; font-size:18px;'>Field must not be empty!!</span>";
                 }else{
-                    $query = "INSERT INTO tbl_user(username, password, role)
-                              VALUES('$username', '$password', '$role')";
+                    $query = "select * from tbl_user where email = '$email' limit 1";
+                    $checkemail = $db->select( $query);
+                    if ($checkemail != false) {
+                       echo "<span style ='color:red; font-size:18px;'>Email already Exist</span>";
+                    }else{
+                    $query = "INSERT INTO tbl_user(username, password, email, role)
+                              VALUES('$username', '$password', '$email', '$role')";
                     $userinsert = $db->insert($query);
                     if ($userinsert) {
                         echo "<span style ='color:green; font-size:18px;'>User Created Successfully!!</span>";
@@ -37,6 +44,7 @@
                        echo "<span style ='color:red; font-size:18px;'>Failed to User Create</span>";
                     }
                 }
+              }
             } 
          ?>
 
@@ -57,7 +65,16 @@
                         <label>Password: </label>
                     </td>
                     <td>
-                        <input type="text" name = "password" placeholder="Enter Password..." class="medium" />
+                        <input type="password" name = "password" placeholder="Enter Password..." class="medium" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Email: </label>
+                    </td>
+                    <td>
+                       <input type="text" name = "email" placeholder="Enter Valid Email..." class="medium" />
                     </td>
                 </tr>
 

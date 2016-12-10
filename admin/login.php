@@ -65,6 +65,9 @@
 				<input type="submit" value="Log in" />
 			</div>
 		</form><!-- form -->
+    <div class="button">
+      <a href="recoverPass.php">Forget Password</a>
+    </div>
 		<div class="button">
 			<a href="#">Vivacom Solutions</a>
 		</div><!-- button -->
