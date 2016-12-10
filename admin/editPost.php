@@ -23,6 +23,7 @@
      $body   = mysqli_real_escape_string($db->link,  $_POST['body']);
      $tags   = mysqli_real_escape_string($db->link,  $_POST['tags']);
      $author = mysqli_real_escape_string($db->link,  $_POST['author']);
+     $userid = mysqli_real_escape_string($db->link,  $_POST['userid']);
 
      $permited  = array('jpg', 'jpeg', 'png', 'gif');
      $file_name = $_FILES['image']['name'];
@@ -52,11 +53,12 @@
 	        $query = "UPDATE tbl_post
 	                      SET 
 	                  cat_id = '$cat_id',
-	                  title = '$title',
-	                  body = '$body',
-	                  image = '$uploaded_image',
+	                  title  = '$title',
+	                  body   = '$body',
+	                  image  = '$uploaded_image',
 	                  author = '$author',                  
-	                  tags = '$tags'
+	                  tags   = '$tags',
+                      userid = '$userid'
 	                  WHERE id = '$id'";
          $updated_rows = $db->update($query);
         if ($updated_rows) {
@@ -74,7 +76,8 @@
                   title    = '$title',
                   body     = '$body',
                   author   = '$author',                  
-                  tags     = '$tags'
+                  tags     = '$tags',
+                  userid   = '$userid'
                   WHERE id = '$id'";
      $updated_rows = $db->update($query);
     if ($updated_rows) {
@@ -167,6 +170,9 @@
                     </td>
                     <td>
                         <input type="text" name ="author" value="<?php echo $postResult['author']; ?>" class="medium" />
+                    </td>
+                    <td>
+                        <input type="hidden" name ="userid" value="<?php echo Session::get('userId') ?>" class="medium" />
                     </td>
                 </tr>
 

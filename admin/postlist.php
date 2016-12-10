@@ -41,9 +41,15 @@
 				<td>
 				<?php echo $fm->formatDate($result['date']); ?></td>
 				<td>
-				<a href="editPost.php?editPostId=<?php echo $result['id'];?>">Edit</a> 
-					         || 
-				<a onclick="return confirm('Are You Sure For Delete!!!');" href="deletePost.php?deletetPostId=<?php echo $result['id'];?>">Delete</a>
+				<a href="viewPost.php?viewPostId=<?php echo $result['id'];?>">View</a>
+
+	    <?php if (Session::get('userId') == $result['userid'] || Session::get('userRole') == '0') { ?>
+	     	||<a href="editPost.php?editPostId=<?php echo $result['id'];?>">Edit</a> 
+					         
+		    ||<a onclick="return confirm('Are You Sure For Delete!!!');" href="deletePost.php?deletetPostId=<?php echo $result['id'];?>">Delete</a>
+				
+		<?php } ?>          
+				
 				</td>
 			</tr>
 		<?php } } ?>	
