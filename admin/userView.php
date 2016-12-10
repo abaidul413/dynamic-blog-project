@@ -34,7 +34,7 @@
                         <label>Name</label>
                     </td>
                     <td>
-                        <input type="text" name = "name" value="<?php echo $result['name']; ?>" class="medium" />
+                        <input type="text" readonly value="<?php echo $result['name']; ?>" class="medium" />
                     </td>
                 </tr>
 
@@ -43,7 +43,7 @@
                         <label>Username</label>
                     </td>
                     <td>
-                        <input type="text" name ="username" value="<?php echo $result['username']; ?>" class="medium" />
+                        <input type="text" readonly value="<?php echo $result['username']; ?>" class="medium" />
                     </td>
                 </tr>
 
@@ -52,7 +52,7 @@
                         <label>Email</label>
                     </td>
                     <td>
-                        <input type="text" name ="email" value="<?php echo $result['email']; ?>" class="medium" />
+                        <input type="text" readnly value="<?php echo $result['email']; ?>" class="medium" />
                     </td>
                 </tr>
              
@@ -61,7 +61,7 @@
                         <label>Details</label>
                     </td>
                     <td>
-                        <textarea class="tinymce" name ="details"> <?php echo $result['details']; ?> </textarea>
+                        <textarea class="tinymce" readonly > <?php echo $result['details']; ?> </textarea>
                     </td>
                 </tr>
 

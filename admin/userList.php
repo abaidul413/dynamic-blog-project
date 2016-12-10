@@ -61,10 +61,12 @@
                       ?>   
                     </td>
 
-					<td>
-                       <a href="userView.php?userid=<?php echo $result['id'] ?>">View</a>         || 
-                       <a onclick="return confirm('Are You Sure For Delete!!');" href= "?userid=<?php echo $result['id'] ?>">Delete</a>
-                    </td>
+					         <td>
+                        <a href="userView.php?userid=<?php echo $result['id'] ?>">View</a>
+                        <?php if (Session::get('userRole') == '0') { ?>
+                           || <a onclick="return confirm('Are You Sure For Delete!!');" href= "?userid=<?php echo $result['id'] ?>">Delete</a>     
+                       <?php } ?>         
+                  </td>
 				</tr>
            <?php } } ?>
 
